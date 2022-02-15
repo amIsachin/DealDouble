@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AutionEntityAdded : DbMigration
+    public partial class Initialize : DbMigration
     {
         public override void Up()
         {
@@ -17,7 +17,7 @@
                         Description = c.String(),
                         ActualAmount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         StartingTime = c.DateTime(nullable: false),
-                        EmdTime = c.DateTime(nullable: false),
+                        EndingTime = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
             

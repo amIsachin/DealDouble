@@ -10,6 +10,6 @@ namespace DealDouble.Entities
         public string Description { get; set; }
         public decimal ActualAmount { get; set; }
         public DateTime StartingTime { get; set; }
-        public DateTime EmdTime { get; set; }
+        public DateTime EndingTime { get; set; } 
     }
 }
