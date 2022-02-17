@@ -12,7 +12,7 @@ using DealDouble.Web.Models;
 
 namespace DealDouble.Web.Controllers
 {
-    [Authorize]
+    [Authorize] 
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
