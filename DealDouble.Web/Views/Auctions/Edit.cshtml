@@ -1,0 +1,50 @@
+﻿@model DealDouble.Entities.Auction
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Auction</h2>
+
+<form id="editForm">
+    <input type="hidden" name="ID" value="@Model.ID" />
+    <label>Title</label>
+    <input type="text" name="Title" value="@Model.Title" />
+    <br />
+
+    <label>Description</label>
+    <input type="text" name="Description" value="@Model.Description" />
+    <br />
+
+    <label>ActualAmount</label>
+    <input type="number" name="ActualAmount" value="@Model.ActualAmount" />
+    <br />
+
+    <label>StartingTime</label>
+    <input type="date" name="StartingTime" value="@Model.StartingTime" />
+    <br />
+
+    <label>EndingTime</label>
+    <input type="date" name="EndingTime" value="@Model.EndingTime" />
+    <br />
+
+    <button type="button" id="saveButton">Save</button>
+</form>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#saveButton').click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/Auctions/Edit',
+                data: $('#editForm').serialize()
+            })
+                .done(function (response) {
+                    $('#listingArea').html(response);
+                })
+                .fail(function () {
+                })
+        });
+    })  //--> Here is close Document ready function().
+</script>
