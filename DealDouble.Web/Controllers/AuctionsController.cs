@@ -20,7 +20,7 @@ namespace DealDouble.Web.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet] 
         public ActionResult Create()
         {
             return PartialView();
@@ -53,7 +53,7 @@ namespace DealDouble.Web.Controllers
             var Auction = service.GetAuctionByID(ID);
             return View(Auction);
         }
-        kjsfe[p0rtkgji]
+
         [HttpPost]
         public ActionResult Delete(Auction auction)
         {
