@@ -63,7 +63,7 @@ namespace DealDouble.Web.Controllers
 
         public ActionResult Details(int ID)
         {
-            return View(service.GetAuctionByID(ID));
+            return View(service.GetAuctionByID(ID)); 
         }
     }
 }
