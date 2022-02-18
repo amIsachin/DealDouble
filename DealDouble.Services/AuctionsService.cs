@@ -41,6 +41,14 @@ namespace DealDouble.Services
             }
         }
 
+        public List<Auction> GetPromotedAuction()
+        {
+            using (var context = new DealDoubleContext())
+            {
+                return context.Auctions.Take(4).ToList();
+            }
+        }
+
         public void DeleteAuction(Auction auction)
         {
             using (var context = new DealDoubleContext())

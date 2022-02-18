@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using DealDouble.Services;
+using DealDouble.Web.ViewModels;
 using System.Web.Mvc;
 
 namespace DealDouble.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private AuctionsService service = new AuctionsService();
         public ActionResult Index()
         {
-            return View();
+            AuctionViewModel model = new AuctionViewModel();
+            model.AllAuctions = service.GetAllAuction();
+            model.PromotedAuctions = service.GetPromotedAuction();
+            return View(model);
         }
 
         public ActionResult About()

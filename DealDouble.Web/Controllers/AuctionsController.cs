@@ -60,5 +60,10 @@ namespace DealDouble.Web.Controllers
             service.DeleteAuction(auction);
             return RedirectToAction("Index");
         }
+
+        public ActionResult Details(int ID)
+        {
+            return View(service.GetAuctionByID(ID));
+        }
     }
 }
