@@ -1,11 +1,60 @@
-﻿
+﻿@model DealDouble.Entities.Auction
+
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<section class="py-5">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mt-4">
+            <img src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="Alternate Text" class="card-img-top img-fluid" />
+            <div class="card-body">
+                <h3 class="card-title">@Model.Title</h3>
+                <h4>@Model.ActualAmount</h4>
+                <p class="card-text">@Model.Description</p>
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+                4.0 stars.
+            </div>
+        </div>
+
+        <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+                Product Reviews
+            </div>
+            <div class="card-body">
+                <p>Lorem</p>
+                <small class="text-muted">Posted by aninymous on 3/1/17</small>
+                <hr />
+                <p>Lorem</p>
+                <small class="text-muted">Posted by aninymous on 3/1/17</small>
+                <hr /><p>Lorem</p>
+                <small class="text-muted">Posted by aninymous on 3/1/17</small>
+                <hr />
+                <a href="#" class="btn btn-success">Leave a review</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* ------------------------------------------------------------------------------------------------------------- *@
+
+@*<section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
@@ -27,4 +76,4 @@
             </div>
         </div>
     </div>
-</section>
+</section>*@

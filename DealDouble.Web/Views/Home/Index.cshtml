@@ -61,7 +61,7 @@
                         <a href="#"> <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" /> </a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="@Url.Action("Details", "Auctions")">@auction.Title - Promoted</a>
+                                <a href="@Url.Action("Details", "Auctions", new { ID=auction.ID})">@auction.Title - Promoted</a>
                             </h4>
                             <h5>@auction.ActualAmount</h5>
                             <p class="card-text">
@@ -85,7 +85,7 @@
                         <a href="#"> <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" /> </a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">@auction.Title</a>
+                                <a href="@Url.Action("Details", "Auctions", new { ID=auction.ID})">@auction.Title</a>
                             </h4>
                             <h5>@auction.ActualAmount</h5>
                             <p class="card-text">

@@ -1,38 +1,43 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Create";
 }
 
-<h2>Create Autions</h2>
+<div class="modal-header">
+    <h5 class="modal-title">Create Auction</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
 
 <form id="createForm">
-    <div class="form-group">
-        <label>Title</label>
-        <input type="text" name="Title" class="form-control" />
-    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="Title" class="form-control" />
+        </div>
 
-    <div class="form-group">
-        <label>Description</label>
-        <input type="text" name="Description" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>ActualAmount</label>
-        <input type="number" name="ActualAmount" class="form-control" />
-    </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" name="Description" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>ActualAmount</label>
+            <input type="number" name="ActualAmount" class="form-control" />
+        </div>
 
-    <div class="form-group">
-        <label>StartingTime</label>
-        <input type="date" name="StartingTime" class="form-control" />
-    </div>
+        <div class="form-group">
+            <label>StartingTime</label>
+            <input type="date" name="StartingTime" class="form-control" />
+        </div>
 
-    <div class="form-group">
-        <label>EndingTime</label>
-        <input type="date" name="EndingTime" class="form-control" />
+        <div class="form-group">
+            <label>EndingTime</label>
+            <input type="date" name="EndingTime" class="form-control" />
+        </div>
     </div>
-
-    <button type="button" id="saveBtn" class="btn btn-success">Save</button>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="saveBtn" class="btn btn-success">Save</button>
+    </div>
 </form>
-
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -43,7 +48,7 @@
                 data: $('#createForm').serialize()
             })
                 .done(function (response) {
-                    debugger;
+                    $('#formModal').modal('toggle');
                     $('#listingArea').html(response);
                 })
                 .fail(function () {

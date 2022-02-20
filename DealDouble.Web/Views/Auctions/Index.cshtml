@@ -1,4 +1,4 @@
-﻿@model List<DealDouble.Entities.Auction>
+﻿@model DealDouble.Web.ViewModels.AuctionsListingViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -19,7 +19,7 @@
                 </Tr>
             </thead>
             <tbody>
-                @foreach (var auction in Model)
+                @foreach (var auction in Model.Auctions)
                 {
                     <tr>
                         <td>@auction.Title</td>
@@ -29,7 +29,7 @@
                         <td>@auction.EndingTime</td>
 
                         <td>
-                            <button class="editButton btn btn-primary" data-id="@auction.ID">Edit</button>
+                            <button class="editButton btn btn-primary" data-id="@auction.ID" data-bs-toggle="modal" data-bs-target="#formModal">Edit</button>
                             <button class="deleteButton btn btn-danger" data-id="@auction.ID">Delete</button>
                         </td>
                     </tr>
@@ -38,19 +38,27 @@
         </table>
 
         <div>
-            <button type="button" id="createButton" class="btn btn-success">Create New Auction</button>
+            <button type="button" id="createButton" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal">Create New Auction</button>
         </div>
 
+        @*<div id="contentArea">
 
-        <div id="contentArea">
+        </div>*@
 
+        <!-- Modal -->
+        <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" id="contentArea">
+
+                </div>
+            </div>
         </div>
 
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#createButton').click(function () {
                     $.ajax({
-                        method: 'GET',
+                        type: 'GET',
                         url: '/Auctions/Create/',
                     })
                         .done(function (response) {
@@ -61,7 +69,6 @@
 
                 //--> Edit Button Functionallity.
                 $('.editButton').click(function () {
-                    debugger;
                     $.ajax({
                         method: 'GET',
                         url: '/Auctions/Edit/',
@@ -86,7 +93,6 @@
                             }
                         })
                             .done(function (response) {
-                                debugger;
                                 $('#listingArea').html(response);
                             })
                             .fail(function () {
@@ -94,9 +100,14 @@
                     }
                 });
 
-            })  //--> Here is close Document ready function().
+                //--> Delete Button Functionallity.
+                //$('.deleteButton').click(function () {
+                //    debugger;
+                //    $('#formModal').modal('toggle');
+                //    $('#deleteButton').val('data-recordID', recipient, $(this).attr('data-id'))
+                //});
+
+            });  //--> Here is close Document ready function().
         </script>
     </div>
 </div>
-
-

@@ -10,6 +10,9 @@ namespace DealDouble.Web.Controllers
         public ActionResult Index()
         {
             AuctionViewModel model = new AuctionViewModel();
+            model.PageTitle = "Home Page";
+            model.PageDescription = "This is Home page";
+
             model.AllAuctions = service.GetAllAuction();
             model.PromotedAuctions = service.GetPromotedAuction();
             return View(model);
