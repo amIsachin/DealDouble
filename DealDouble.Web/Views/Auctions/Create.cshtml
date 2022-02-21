@@ -32,6 +32,12 @@
             <label>EndingTime</label>
             <input type="date" name="EndingTime" class="form-control" />
         </div>
+
+        <div class="form-group">
+            <label>Select Pictures</label>
+            <input type="file" name="AuctionPictures" multiple id="auctionPictures" class="form-control" />
+        </div>
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -41,10 +47,37 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#auctionPictures').change(function () {
+            debugger;
+            var pictures = this.files;
+            var picsData = new FormData();
+
+            for (var i = 0; i < pictures.length; i++) {
+                picsData.append("Picture", pictures[i]);
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("UploadPitures", "Shared")',
+                data: picsData,
+                dataType: 'json',
+                processData: false,
+                contentType:false
+            })
+                .done(function (response) {
+                    $('#formModal').modal('toggle');
+                    $('#listingArea').html(response);
+                })
+                .fail(function () {
+                })
+        });
+
+
+        //--> Save Button Funtionallity.
         $('#saveBtn').click(function () {
             $.ajax({
                 type: 'POST',
-                url: '/Auctions/Create',
+                url: '@Url.Action("Create", "Auctions")',    //--> '/Auctions/Create',
                 data: $('#createForm').serialize()
             })
                 .done(function (response) {
