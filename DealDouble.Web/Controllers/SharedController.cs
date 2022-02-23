@@ -31,7 +31,7 @@ namespace DealDouble.Web.Controllers
 
                 picturesJSON.Add(new { ID = pictureID, pictureURL = fileName });
             }
-
+             
             result.Data = picturesJSON;
             return result;
         }

@@ -1,6 +1,8 @@
 ﻿using DealDouble.Entities;
 using DealDouble.Services;
 using DealDouble.Web.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace DealDouble.Web.Controllers
@@ -25,15 +27,38 @@ namespace DealDouble.Web.Controllers
             }
         }
 
-        [HttpGet] 
+        [HttpGet]
         public ActionResult Create()
         {
             return PartialView();
         }
 
         [HttpPost]
-        public ActionResult Create(Auction auction)
+        public ActionResult Create(CreateAuctionViewModel model)
         {
+            Auction auction = new Auction();
+            auction.Title = model.Title;
+            auction.Description = model.Description;
+            auction.ActualAmount = model.ActualAmount;
+            auction.StartingTime = model.StartingTime;
+            auction.EndingTime = model.EndingTime;
+
+            var pictureIDs = model.AuctionPicture.Split(',').Select(ID => int.Parse(ID)).ToList();
+            auction.ActionPictures = new List<ActionPicture>();
+
+            auction.ActionPictures.AddRange(pictureIDs.Select(x => new ActionPicture() { PictureID = x }).ToList());
+
+            /*
+             *  foreach (var picID in pictureIDs)
+             *  {
+             *     var auctionPicture = new ActionPicture();
+             *     auctionPicture.PictureID = picID;
+             *     auction.ActionPictures.Add(auctionPicture);
+             *  }
+             */
+
+
+
             service.SaveAuction(auction);
             return RedirectToAction("Index");
         }
@@ -61,7 +86,7 @@ namespace DealDouble.Web.Controllers
 
         public ActionResult Details(int ID)
         {
-            return View(service.GetAuctionByID(ID)); 
+            return View(service.GetAuctionByID(ID));
         }
 
         public ActionResult Free()
