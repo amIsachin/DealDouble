@@ -43,9 +43,9 @@ namespace DealDouble.Web.Controllers
             auction.StartingTime = model.StartingTime;
             auction.EndingTime = model.EndingTime;
 
-            var pictureIDs = model.AuctionPicture.Split(',').Select(ID => int.Parse(ID)).ToList();
+            var pictureIDs = model.AuctionPicture.Split(new char[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries).Select(ID => int.Parse(ID)).ToList();
             auction.ActionPictures = new List<ActionPicture>();
-
+             
             auction.ActionPictures.AddRange(pictureIDs.Select(x => new ActionPicture() { PictureID = x }).ToList());
 
             /*
@@ -56,9 +56,6 @@ namespace DealDouble.Web.Controllers
              *     auction.ActionPictures.Add(auctionPicture);
              *  }
              */
-
-
-
             service.SaveAuction(auction);
             return RedirectToAction("Index");
         }
