@@ -9,14 +9,14 @@
         <h2>Auctions</h2>
         <table class="table table-hover">
             <thead>
-                <Tr>
+                <tr>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Actual Amount</th>
                     <th>Starting Time</th>
                     <th>Ending Time</th>
                     <th>Auctions</th>
-                </Tr>
+                </tr>
             </thead>
             <tbody>
                 @foreach (var auction in Model.Auctions)
@@ -52,6 +52,10 @@
 
                 </div>
             </div>
+        </div>
+
+        <div style="display:none;" id="image-template">
+            <img src="" class="img-fluid image" />
         </div>
 
         <script type="text/javascript">
@@ -97,6 +101,8 @@
                             })
                     }
                 });
+
+               
 
                 //--> Delete Button Functionallity.
                 //$('.deleteButton').click(function () {

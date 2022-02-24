@@ -51,7 +51,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#auctionPictures').change(function () {
-            debugger;
             var pictures = this.files;
             var picsData = new FormData();
 
@@ -68,24 +67,25 @@
                 contentType:false
             })
                 .done(function (responses) {
-                    debugger;
-                    var picIDs = '';
                     for (var i = 0; i < responses.length; i++) {
                         var picResponse = responses[i];
-                        var imgHTML = "<img class='img-fluid' src='/Content/ThemeMaterial/Images/" + picResponse.pictureURL+"' />"
-                        $('#picturesArea').append(imgHTML);
-                        picIDs = picIDs + "," + picResponse.ID;
+                        AttachNewImage(picResponse.pictureURL, picResponse.ID);
                     }
-
-                    $('#pitureIDs').val(picIDs);
                 })
                 .fail(function () {
                 })
         });
 
-
         //--> Save Button Funtionallity.
         $('#saveBtn').click(function () {
+            var imageIDs = [];
+            $('#picturesArea .image').each(function () {
+                var imageID = $(this).attr('data-id');
+                imageIDs.push(imageID);
+            })
+
+            $('#pitureIDs').val(imageIDs.join());
+
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("Create", "Auctions")',    //--> '/Auctions/Create',
@@ -98,6 +98,23 @@
                 .fail(function () {
                 })
         })
+
+        function AttachNewImage(imageURL, imageID)
+        {
+            debugger;
+            var $newimgHTML = $('#image-template').clone();
+            $newimgHTML.find('.image').attr('src', "/Content/ThemeMaterial/Images/" + imageURL);
+            $newimgHTML.find('.image').attr('data-id', imageID);
+            $('#picturesArea').append($newimgHTML.html());
+            RemoveImageOnClick();
+        }
+
+        function RemoveImageOnClick() {
+            $('#picturesArea .image').click(function () {
+                debugger;
+                $(this).remove();
+            })
+        }
 
     });  //--> Here is close Document ready function().
 </script>
